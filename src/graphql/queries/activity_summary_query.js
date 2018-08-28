@@ -45,4 +45,4 @@ async function connect(container={}) {
   }
 }
 
-module.exports = Object.create({connect})
+module.exports = connect

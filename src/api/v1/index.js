@@ -28,7 +28,6 @@ const config = container => {
   // Error/Response Handling
   // ======================================================
   function handle_error_response(err, req, res, next) {
-    console.log(err)
     const { message, status } = err
 
     req.error = {

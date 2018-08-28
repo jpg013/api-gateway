@@ -17,7 +17,7 @@ async function connect(container={}) {
     }
 
     const result = await user_repository.get_logged_in_user(options)
-    
+
     return map_user_object(result)
   }
 
@@ -28,4 +28,4 @@ async function connect(container={}) {
   }
 }
 
-module.exports = Object.create({connect})
+module.exports = connect

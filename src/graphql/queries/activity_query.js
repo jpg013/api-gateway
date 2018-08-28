@@ -19,11 +19,9 @@ async function connect(container={}) {
   }
 
   async function query_resolver(parent, args, req) {
-    // Create options
+    // Proxy options
     const options = {
-      headers: {
-        auth: req.headers.auth ? req.headers.auth : undefined
-      }
+      headers: { ...req.proxy_headers }
     }
 
     const result = await activity_repository.get_activity(options)
@@ -34,7 +32,7 @@ async function connect(container={}) {
   }
 
   return {
-    type: new GraphQLList(activity_feed_object),
+    type: new GraphQLList(activity_object),
     description: 'Activity feeds query',
     resolve: query_resolver,
     args: {
@@ -44,4 +42,4 @@ async function connect(container={}) {
   }
 }
 
-module.exports = Object.create({connect})
+module.exports = connect

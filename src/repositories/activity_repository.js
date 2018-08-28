@@ -8,8 +8,13 @@ function activity_repository(container={}) {
     return await dial(`${api_prefix.influence}/analysis`, 'get', options)
   }
 
+  async function get_activity_count(options={}) {
+    return await dial(`${api_prefix.influence}/analysis/count`, 'get', options)
+  }
+
   return {
-    get_activity
+    get_activity,
+    get_activity_count
   }
 }
 

@@ -1,8 +1,12 @@
-const { GraphQLInt } = require('graphql')
+const {
+  GraphQLInt,
+  GraphQLObjectType,
+  GraphQLNonNull
+} = require('graphql')
 
 module.exports = new GraphQLObjectType({
   name: 'PortalCountsObject',
-  description: 'Portal COunts',
+  description: 'Influence Portal Counts',
   fields: () => ({
     activity_count: {
       type: new GraphQLNonNull(GraphQLInt)
