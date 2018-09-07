@@ -12,7 +12,7 @@ module.exports = function extendConfig(config) {
     fs.mkdirSync(logsDir);
   }
 
-  return Object.assign({}, { ...config }, {
+  const loggerConfig = {
     development: {
       errorLogPath: path.resolve(logsDir, 'error.log'),
       warnLogPath: path.resolve(logsDir, 'warn.log'),
@@ -37,5 +37,9 @@ module.exports = function extendConfig(config) {
       infoLogPath: path.resolve(logsDir, 'info.log'),
       exceptionsLogPath: path.resolve(logsDir, 'exceptions.log'),
     }
-  }[config.environment])
-}
+  };
+
+  return Object.assign({}, { ...config }, {
+    logger: loggerConfig[config.environment]
+  });
+};
