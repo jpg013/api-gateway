@@ -1,18 +1,27 @@
+const { ApiError } = require('../errors');
+
 function makeService(fetch) {
   if (!fetch) {
     throw new TypeError('fetch must be defined.');
   }
 
   // TODO - This needs to be refactoed when we get the actual service
-  const getSubjectLocations = async (params) => {
-    console.log('getting here...')
-    return null;
+  const getSubjectLocations = async (params, authToken) => {
     // Call to subject location service will go here, using fake data for now.
-    const uri = `/${params.activityId}/subjectLocation`;
+    try {
+      const options = {
+        method: 'POST',
+        headers: { auth: authToken },
+        data: { ...params },
+        url: `/${params.activityId}/subjectLocation`,
+      };
 
-    const result = fetch.post(uri, params);
+      const { data } = await fetch(options);
 
-    console.log(result);
+      return data;
+    } catch({ response }) {
+      throw new ApiError(response.status, response.data.message);
+    }
   };
 
   return {

@@ -1,7 +1,7 @@
 const { combineResolvers }    = require('graphql-resolvers');
-const subjectLocation         = require('./subject-location');
-const newRequestScope         = require('./request-scope');
-const ensureAccessPermissions = require('./ensure-access-permissions');
+const subjectLocation         = require('./subject-location-resolver');
+const newRequestScope         = require('./request-scope-resolver');
+const ensureAccessPermissions = require('./ensure-access-permissions-resolver');
 const { scalarResolvers }     = require('../scalars');
 
 const rootResolver = combineResolvers(
