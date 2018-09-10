@@ -1,5 +1,8 @@
-module.exports = (/*obj, args, context, info*/) => {
-  // Call the subject location service and return the results
+const { subjectLocationService }  = require('../../services');
 
-  return null;
+module.exports = async (obj, args, context, info) => {
+  console.log('in the subject location resolver');
+  console.log(args)
+  // Call the subject location service and return the results
+  return await subjectLocationService.getSubjectLocations();
 };

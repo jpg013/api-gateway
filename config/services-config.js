@@ -6,6 +6,9 @@ const servicesConfig = {
     analytics: {
       baseURL: 'https://api.dev.dunami.com/analytics/v1'
     },
+    subjectLocation: {
+      baseURL: 'https://api.dev.dunami.com/influence/v1/analysis' // TODO - fill this out
+    }
   },
   testing: {
     influence: {

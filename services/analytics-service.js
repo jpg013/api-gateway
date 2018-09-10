@@ -3,7 +3,7 @@ function makeService(fetch) {
     throw new TypeError('fetch must be defined.');
   }
   // GET /analysis/GetAnalysisSummaryData
-  const getChannelAccess = async (id, token) => {
+  const validateRequestHasChannelAccess = async (id, token) => {
     const resp = await fetch.get(`/analysis/GetAnalysisSummaryData/?analysisKeys=${id}`, {
 
       headers: {
@@ -14,6 +14,8 @@ function makeService(fetch) {
     if (resp.status !== 200) {
       throw new Error('Unauthorized');
     }
+
+    return true;
   };
 
   const getRequestCtxAccount = async token => {
@@ -28,7 +30,7 @@ function makeService(fetch) {
 
   return {
     getRequestCtxAccount,
-    getChannelAccess
+    validateRequestHasChannelAccess,
   };
 }
 

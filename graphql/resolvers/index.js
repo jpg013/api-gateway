@@ -1,16 +1,17 @@
 const { combineResolvers }    = require('graphql-resolvers');
 const subjectLocation         = require('./subject-location');
-const requestScope            = require('./request-scope');
+const newRequestScope         = require('./request-scope');
 const ensureAccessPermissions = require('./ensure-access-permissions');
-const ensureChannelAccess     = require('./ensure-channel-access');
+const { scalarResolvers }     = require('../scalars');
+
+const rootResolver = combineResolvers(
+  newRequestScope,
+  ensureAccessPermissions,
+);
 
 exports.resolverMap = {
   RootQuery: {
-    subject_location: combineResolvers(
-      requestScope,
-      ensureAccessPermissions,
-      ensureChannelAccess,
-      subjectLocation
-    )
-  }
+    subject_location: combineResolvers(rootResolver, subjectLocation),
+  },
+  ...scalarResolvers,
 };

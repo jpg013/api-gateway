@@ -1,13 +1,14 @@
 const {
   SubjectLocationType,
-  FilterInput
+  FilterInputType
 }                              = require('./types');
 const { resolverMap }          = require('./resolvers');
+const { scalarTypes }          = require('./scalars');
 const { makeExecutableSchema } = require('graphql-tools');
 
 const RootQuery = `
   type RootQuery {
-    subject_location(filter: FilterInput): SubjectLocation
+    subject_location(filter: FilterInput): [SubjectLocation]
   }
 `;
 
@@ -21,8 +22,9 @@ module.exports = makeExecutableSchema({
   typeDefs: [
     SchemaDefinition,
     RootQuery,
-    FilterInput,
+    FilterInputType,
     ...SubjectLocationType,
+    ...scalarTypes
   ],
   resolvers: resolverMap
 });

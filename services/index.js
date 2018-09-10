@@ -1,6 +1,7 @@
-const makeAnalyticsService = require('./analytics-service');
-const axios                = require('axios');
-const config               = require('../config');
+const makeAnalyticsService       = require('./analytics-service');
+const makeSubjectLocationService = require('./subject-location-service');
+const axios                      = require('axios');
+const config                     = require('../config');
 
 /** TODO - Configure this in an appopriate spot.
   * Configure global request args && fetch instances for each service
@@ -14,4 +15,7 @@ const newFetchInstance = baseURL => {
   });
 };
 
+// /analysis/{analysisId}/subjectLocation
+
 exports.analyticsService = makeAnalyticsService(newFetchInstance(config.services.analytics.baseURL));
+exports.subjectLocationService = makeSubjectLocationService(newFetchInstance(config.services.subjectLocation.baseURL));

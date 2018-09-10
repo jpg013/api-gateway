@@ -1,12 +1,10 @@
-const {
-  getHealth
-}                            = require('./routes/health-routes');
-// const logger              = require('../common/logger');
-const { ApolloServer }       = require('apollo-server-express');
-// const httpStatusCodes     = require('http-status-codes');
-const express                = require('express');
-const config                 = require('../config');
-const graphqlSchema          = require('../graphql/schema');
+const { getHealth }             = require('./routes/health-routes');
+// const logger                 = require('../common/logger');
+const { ApolloServer }          = require('apollo-server-express');
+// const httpStatusCodes        = require('http-status-codes');
+const express                   = require('express');
+const config                    = require('../config');
+const { schema: graphqlSchema } = require('../graphql');
 const {
   parseRequestBearer,
   // responseWriter,
